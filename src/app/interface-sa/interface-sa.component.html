@@ -1,0 +1,304 @@
+<header>
+    <p-menubar   >
+        <div style="display: inline-flex;  width: 1300px; ">
+        <div style="  float:left;">
+            <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+        </div>
+        <div> <h1 class="title">HelpDesk</h1></div>
+        <div style="float: left ; margin-left:650px;">
+    <p-menubar [model]="items"  >
+        
+        <div  >
+            <button pButton pRipple #btn label="Name"style="width: 150px" type="button" class="p-button-rounded p-button-info" pButton icon="pi pi-user"  (click)="menu.toggle($event)"></button>
+            <p-slideMenu #menu  [model]="admin" [popup]="true" [viewportHeight]="150"></p-slideMenu>
+         </div>
+    </p-menubar></div>
+    </div></p-menubar>
+    </header>
+    <body>
+        <p-table #dt1 [style]="{'width':'100%','margin-top':'20px'}" [value]="customers" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="['name','country.name','representative.name','status']">
+        <ng-template pTemplate="caption">
+           
+            <div class="p-d-flex">
+                <span class="p-input-icon-left p-ml-auto" style="display: inline-flex;">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+                    <div class="p-d-flex tooltip" style="margin-left: 940px;">
+                        <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2 "  tooltipPosition="bottom"></button>
+                    <span class="tooltiptext"> Download in Excel Format</span>
+                    </div>
+                    <p-button class="btn" routerLink="/dashboardA" label="Dashboard" >
+                    </p-button>
+                </span>
+            
+            </div>
+       </ng-template>
+       <ng-template pTemplate="header">
+           <tr>
+            <th style="width: 60px ;" >
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    ID
+                    <br>
+                    <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                </div>
+            </th>
+               <th  >
+                   <div class="p-d-flex p-jc-between p-ai-center">
+                       Title
+                       <br>
+                       <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                   </div>
+               </th>
+               <th >
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Category
+                    <br>
+                    <p-columnFilter field="priority" matchMode="in" display="menu" [showMatchModes]="false"
+                    [showOperator]="false" [showAddButton]="false">
+                    <ng-template pTemplate="header">
+                        <div class="p-px-3 p-pt-3 p-pb-0">
+                            <span class="p-text-bold">Categories</span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                        <p-multiSelect [ngModel]="value" [options]="priority" placeholder="Any"
+                            (onChange)="filter($event.value)" optionLabel="name">
+                            <ng-template let-option pTemplate="item">
+                                <div class="p-multiselect-representative-option">
+                                    <span class="p-ml-1">{{option.label}}</span>
+                                </div>
+                            </ng-template>
+                        </p-multiSelect>
+                    </ng-template>
+                </p-columnFilter>				</div>
+            </th>
+			<th style="width:100px ;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Type
+                    <br>
+                    <p-columnFilter field="types" matchMode="in" display="menu" [showMatchModes]="false"
+                        [showOperator]="false" [showAddButton]="false">
+                        <ng-template pTemplate="header">
+                            <div class="p-px-3 p-pt-3 p-pb-0">
+                                <span class="p-text-bold">Types</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-multiSelect [ngModel]="value" [options]="types" placeholder="Any"
+                                (onChange)="filter($event.value)" optionLabel="name">
+                                <ng-template let-option pTemplate="item">
+                                    <div class="p-multiselect-representative-option">
+                                        <span class="p-ml-1">{{option.name}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-multiSelect>
+                        </ng-template>
+                    </p-columnFilter>
+                
+                </div>
+            </th>
+            <th style="width:100px ;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    Status
+                    <br>
+                    <p-columnFilter field="statuses" matchMode="in" display="menu" [showMatchModes]="false"
+                        [showOperator]="false" [showAddButton]="false">
+                        <ng-template pTemplate="header">
+                            <div class="p-px-3 p-pt-3 p-pb-0">
+                                <span class="p-text-bold">Statuses</span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-multiSelect [ngModel]="value" [options]="statuses" placeholder="Any"
+                                (onChange)="filter($event.value)" optionLabel="label">
+                                <ng-template let-option pTemplate="item">
+                                    <div class="p-multiselect-representative-option">
+                                        <span class="p-ml-1">{{option.label}}</span>
+                                    </div>
+                                </ng-template>
+                            </p-multiSelect>
+                        </ng-template>
+                    </p-columnFilter>
+                
+                </div>
+            </th>
+            <th style="width:100px ;">
+				<div class="p-d-flex p-jc-between p-ai-center">
+					Priority
+					<br>
+					<p-columnFilter field="priority" matchMode="in" display="menu" [showMatchModes]="false"
+						[showOperator]="false" [showAddButton]="false">
+						<ng-template pTemplate="header">
+							<div class="p-px-3 p-pt-3 p-pb-0">
+								<span class="p-text-bold">Priorites</span>
+							</div>
+						</ng-template>
+						<ng-template pTemplate="filter" let-value let-filter="filterCallback">
+							<p-multiSelect [ngModel]="value" [options]="priority" placeholder="Any"
+								(onChange)="filter($event.value)" optionLabel="name">
+								<ng-template let-option pTemplate="item">
+									<div class="p-multiselect-representative-option">
+										<span class="p-ml-1">{{option.label}}</span>
+									</div>
+								</ng-template>
+							</p-multiSelect>
+						</ng-template>
+					</p-columnFilter>
+				</div>
+			</th>
+               <th style="width:140px ;">
+                   <div class="p-d-flex p-jc-between p-ai-center">
+                       Start Date
+                       <br>
+                       <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+                   </div>
+               </th>
+               <th style="width:140px ;">
+                <div class="p-d-flex p-jc-between p-ai-center">
+                    DeadLine
+                    <br>
+                    <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+                </div>
+            </th>
+               <th style="width:140px ;">
+                   <div class="p-d-flex p-jc-between p-ai-center">
+                       End Date
+                       <br>
+                       <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+                   </div>
+               </th>
+
+               <th style="width: 70px ;">
+                   <div class="p-d-flex p-jc-between p-ai-center">
+                       SLA
+                       <br>
+                       <p-columnFilter field="activity" matchMode="between" display="menu" [showMatchModes]="false"
+                           [showOperator]="false" [showAddButton]="false">
+                           <ng-template pTemplate="filter" let-filter="filterCallback">
+                               <p-slider [ngModel]="activityValues" [range]="true" (onSlideEnd)="filter($event.values)"
+                                   styleClass="p-m-3"></p-slider>
+                               <div class="p-d-flex p-ai-center p-jc-between p-px-2">
+                                   <span>{{activityValues[0]}}</span>
+                                   <span>{{activityValues[1]}}</span>
+                               </div>
+                           </ng-template>
+                       </p-columnFilter>
+                   </div>
+               </th>
+               <th style="width: 130px;">
+                   <div class="p-d-flex p-jc-between p-ai-center">
+                       SCE
+                       <br>
+                       <p-columnFilter field="representative" matchMode="in" display="menu" [showMatchModes]="false"
+                           [showOperator]="false" [showAddButton]="false">
+                           <ng-template pTemplate="header">
+                               <div class="p-px-3 p-pt-3 p-pb-0">
+                                   <span class="p-text-bold">Agent Picker</span>
+                               </div>
+                           </ng-template>
+                           <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                               <p-multiSelect [ngModel]="value" [options]="priority" placeholder="Any"
+                                   (onChange)="filter($event.value)" optionLabel="name">
+                                   <ng-template let-option pTemplate="item">
+                                       <div class="p-multiselect-representative-option">
+                                           <span class="p-ml-1">{{option.name}}</span>
+                                       </div>
+                                   </ng-template>
+                               </p-multiSelect>
+                           </ng-template>
+                       </p-columnFilter>
+                   </div>
+               </th>
+               <th style="width: 160px;" pSortableColumn="activity"> Rating <p-sortIcon field="activity"></p-sortIcon>
+            </th>
+               
+           </tr>
+       </ng-template>
+       <ng-template pTemplate="body" let-customer>
+           <tr>
+               <td>
+                    <!-- Ticket's ID -->
+               </td>
+               <td>
+                   <!-- Supposed Ticket's Title -->
+                {{customer.name}}
+               </td>
+               <td>
+                    <!-- Ticket's Category -->
+               </td>
+               <td>	
+                  <!-- Ticket's Type -->
+                   
+               </td>
+               <td>
+                   <!-- Ticket's Status-->
+               </td>
+               <td>
+                    <!-- Ticket's Priority -->
+               </td>
+               <td>
+                    <!-- Ticket's Start Date -->
+            </td>
+            <td>
+                <!-- Ticket's DeadLine -->
+            </td>
+               <td>
+                   <!-- Ticket's End Date -->
+               </td>
+               <td>
+                    <!-- SLA -->                   
+               </td>
+               <td>
+                   <!-- CSE responsable for the ticket -->
+                   <div class="tooltip">
+                   
+                   <span class="tooltiptext"> Mail: <!-- CSE's Mail -->   </span>
+                </div>
+               </td>
+               <td>
+                   <!-- Rating-->
+                   <p-rating [ngModel]="customer.activity" [readonly]="true"  [cancel]="false">
+                       
+                   </p-rating>
+                </td>
+                
+                <!--
+               <td class="p-text-center">
+                   <div class="tooltip"><button pButton style="width: 30px; height: 30px; margin: 3px; " pRipple icon="pi pi-ticket" class="p-button-rounded p-button-info p-mr-2 " (click)="showBasicDialog()" ></button>
+                                   <span class="tooltiptext"> Voir les détails du ticket</span>
+   
+                   </div>
+                   <div class="tooltip">
+                   
+       
+               </div>
+                   <p-dialog header="Détails du ticket" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+                       <p> <b> ID Ticket:</b>  {{customer.id}}  </p>
+                       <p> <b> Titre Ticket:</b> {{customer.name}}</p>
+                       <p> <b> Etat Ticket:</b> {{customer.status}}</p>
+                       <p> <b> Date Ticket:</b> {{customer.date | date: 'dd/MM/yyyy'}}</p>
+                       <p> <b> Desription Ticket:</b> {{customer.company}}</p>
+
+   
+   
+                       <ng-template pTemplate="footer">
+                           <p-button icon="pi pi-check" (click)="displayBasic=false" label="Imprimer" styleClass="p-button-text"></p-button>
+                           <p-button icon="pi pi-times" (click)="displayBasic=false" label="Fermer"></p-button>
+                       </ng-template>
+                   </p-dialog>
+               </td> -->
+           </tr>
+       </ng-template>
+       <ng-template pTemplate="emptymessage">
+           <tr>
+               <td colspan="7">No tickets found.</td>
+           </tr>
+       </ng-template>
+   </p-table>
+
+       </body>
+      
+   

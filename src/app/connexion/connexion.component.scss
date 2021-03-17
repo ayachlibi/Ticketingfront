@@ -1,0 +1,44 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
+
+
+.loginbox{
+    width: 280px;
+  position: absolute;
+  top: 45%;
+  left: 70%;
+  transform: translate(-50%,-50%);
+  
+
+  
+        h1 {
+         margin-top: 2em;
+         font-size: 60px;
+         border-bottom: 8px solid ;
+        margin-bottom: 50px;
+        padding: 13px 0;
+        text-align: center;
+        color: #0a3b70;
+        border-color: #0a3b70;
+        font-family: cursive;
+        }
+}
+
+.title{
+    font-size: 37px;
+    color: #0a3b70;
+    margin-left: 15px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.bgimg{
+    float: left;
+    margin-left: 80px;
+}
+.oublie{
+    text-decoration: none;
+    color: #0a3b70;
+    font-size: 15px;
+    padding-left: 77px;
+    
+}

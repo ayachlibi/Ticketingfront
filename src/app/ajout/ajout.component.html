@@ -1,0 +1,111 @@
+<p-menubar   >
+    <div style="display: inline-flex;  width: 1300px; ">
+    <div style="  float:left;">
+        <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+    </div>
+    <div> <h1 class="title">HelpDesk</h1></div>
+    <div style="float: left ; margin-left:640px;">
+<p-menubar [model]="items"  >
+    
+    
+    <div  >
+        <button type="button" pButton label="Logout" icon="pi pi-sign-in" style="margin-left:.25em"></button>
+    </div>
+</p-menubar></div>
+</div></p-menubar>
+<body>
+    <div class="form">
+        <h1>Add Ticket</h1>
+        
+        <div class="p-fluid p-grid" style="display: inline-flex; ">
+
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-tag"></i>
+                    <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueTitre"> 
+                    <label for="inputtext-left">Title</label>
+                </span>
+            </div>
+            
+            <br>
+                        <div class="p-field p-col-12 p-md-4">
+                <span class="p-float-label" style="width: 350px; ">
+                    <p-dropdown [options]="categories" [(ngModel)]="selectedCat" optionLabel="name"></p-dropdown>
+
+                    <label for="dropdown">Category</label>
+                </span>
+            </div>
+        
+        </div>
+        <br>
+        <br>
+    
+        <div class="p-fluid p-grid" style="display: inline-flex; ">
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-envelope"></i>
+                    <input type="email" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valuemail"> 
+                    <label for="inputtext-left">E-mail</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-briefcase"></i>
+                    <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueent"> 
+                    <label for="inputtext-left">Entreprise</label>
+                </span>
+            </div>
+        </div>
+            <br>
+            <br>
+            <br>
+            <div class="p-fluid p-grid" style="display: inline-flex; ">
+            <div class="p-field p-col-12 p-md-4">
+                <span class="p-float-label" style="width: 350px; margin-right: 20px; ">
+                    <p-dropdown  [options]="priorites"  [(ngModel)]="selectedPrio" optionLabel="name"></p-dropdown>
+
+                    <label for="dropdown">Priority</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-4">
+                <span class="p-float-label" style="width: 350px; ">
+                    <p-dropdown  [options]="types" [(ngModel)]="selectedPrio" optionLabel="name"></p-dropdown>
+
+                    <label for="dropdown">Type</label>
+                </span>
+            </div>
+        </div>
+            <br>
+            <br>
+
+            <div class="p-field p-col-12">
+                <span class="p-float-label">
+                    <textarea inputId="textarea" rows="7" cols="100" [(ngModel)]="valuedesc" pInputTextarea></textarea>
+                    <label for="textarea">Description</label>
+                </span>
+            </div>
+            <h5 style="color: grey; font-family: monospace;">Add image </h5>
+            <p-fileUpload name="myfile[]" url="./upload.php" 
+            accept="image/*" >
+            <ng-template pTemplate="toolbar">
+            </ng-template>
+            <ng-template let-file pTemplate="file">
+                <div>Nom de l'image </div>
+            </ng-template>
+            <ng-template pTemplate="content" let-files>
+                <div>files</div>
+            </ng-template>
+    </p-fileUpload>
+    <div class="btnC">
+        
+        <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-button (click)="confirm1()" class="btn" icon="pi pi-check" label="Confirm"></p-button>
+<p-button (click)="confirm2()" class="btn" icon="pi pi-times" label="Delete"></p-button>
+<p-messages [value]="msgs"></p-messages>
+
+    </div>
+        
+    </div>
+
+</body>
+<app-footer></app-footer>

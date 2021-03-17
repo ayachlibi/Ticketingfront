@@ -1,0 +1,176 @@
+<p-menubar   >
+    <div style="display: inline-flex;  width: 1300px; ">
+    <div style="  float:left;">
+        <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+    </div>
+    <div> <h1 class="title">HelpDesk</h1></div>
+    <div style="float: left ; margin-left:790px;">
+<p-menubar [model]="items"  >
+    
+</p-menubar></div>
+</div></p-menubar>
+
+
+<body >
+        <h2 style="margin-left: 500px;" > Etes vous un nouveau </h2>
+         <div style="margin-left: 400px;"  >
+    <p-toggleButton  [(ngModel)]="checked1" onLabel="Close" offLabel="Client" onIcon="pi pi-times"
+    offIcon="pi pi-check" [style]="{'width': '10em','margin-right':'100px' }" (click)="toggle()"></p-toggleButton> 
+    <p-toggleButton   [(ngModel)]="checked2" onLabel=" Close" offLabel="CSE" onIcon="pi pi-times"
+    offIcon="pi pi-check" [style]="{'width': '10em'}" (click)="toggle2()"></p-toggleButton> 
+</div>
+       
+    <div class="form" *ngIf="checked1">
+        <h1>Ajout Client</h1>
+        
+        <div class="p-fluid p-grid" style="display: inline-flex; ">
+
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user"></i>
+                    <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueTitre"> 
+                    <label for="inputtext-left">Nom </label>
+                </span>
+            </div>
+            
+            <br>
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-user"></i>
+                    <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueTitre"> 
+                    <label for="inputtext-left">Prénom </label>
+                </span>
+            </div>
+        
+        </div>
+        <br>
+        <br>
+    
+        <div class="p-fluid p-grid" style="display: inline-flex; ">
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-envelope"></i>
+                    <input type="email" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valuemail"> 
+                    <label for="inputtext-left">E-mail</label>
+                </span>
+            </div>
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-briefcase"></i>
+                    <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueent"> 
+                    <label for="inputtext-left">Entreprise</label>
+                </span>
+            </div>
+        </div>
+            <br>
+            <br>
+            <div class="p-fluid p-grid" style="display: inline-flex; ">
+                <div class="p-field p-col-12 p-md-4" >
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-link"></i>
+                        <input type="email" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valuemail"> 
+                        <label for="inputtext-left">Site Web</label>
+                    </span>
+                </div>
+                <div class="p-field p-col-12 p-md-4" >
+                    <span class="p-float-label p-input-icon-left">
+                        <i class="pi pi-phone"></i>
+                        <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueent"> 
+                        <label for="inputtext-left">Numéro Télephone</label>
+                    </span>
+                </div>
+            </div>
+            <br>
+            <br>
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-map-marker"></i>
+                    <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueent"> 
+                    <label for="inputtext-left">Adresse</label>
+                </span>
+            </div>
+            <br>
+
+            
+    <div class="btnC">
+        
+        <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-button (click)="confirm1()" class="btn" icon="pi pi-check" label="Confirmer"></p-button>
+<p-button (click)="confirm2()" class="btn" icon="pi pi-times" label="Effacer"></p-button>
+<p-messages [value]="msgs"></p-messages>
+
+    </div>
+        
+    </div>
+    <!-- -------------------------------------------------------- -->
+    <div class="form" *ngIf="checked2">
+    <h1>Ajout CSE</h1>
+    
+    <div class="p-fluid p-grid" style="display: inline-flex; ">
+
+        <div class="p-field p-col-12 p-md-4" >
+            <span class="p-float-label p-input-icon-left">
+                <i class="pi pi-user"></i>
+                <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueTitre"> 
+                <label for="inputtext-left">Nom </label>
+            </span>
+        </div>
+        
+        <br>
+        <div class="p-field p-col-12 p-md-4" >
+            <span class="p-float-label p-input-icon-left">
+                <i class="pi pi-user"></i>
+                <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueTitre"> 
+                <label for="inputtext-left">Prénom </label>
+            </span>
+        </div>
+    
+    </div>
+    <br>
+    <br>
+
+    <div class="p-fluid p-grid" style="display: inline-flex; ">
+        <div class="p-field p-col-12 p-md-4" >
+            <span class="p-float-label p-input-icon-left">
+                <i class="pi pi-envelope"></i>
+                <input type="email" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valuemail"> 
+                <label for="inputtext-left">E-mail</label>
+            </span>
+        </div>
+        <div class="p-field p-col-12 p-md-4" >
+            <span class="p-float-label p-input-icon-left">
+                <i class="pi pi-phone"></i>
+                <input type="text" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valueent"> 
+                <label for="inputtext-left">Numéro Télephone</label>
+            </span>
+        </div>
+        
+    </div>
+        <br>
+        <br>
+        <div class="p-fluid p-grid" style="display: inline-flex; ">
+            <div class="p-field p-col-12 p-md-4" >
+                <span class="p-float-label p-input-icon-left">
+                    <i class="pi pi-link"></i>
+                    <input type="email" style="width: 350px; margin-right: 20px;" id="inputtext-left" pInputText [(ngModel)]="valuemail"> 
+                    <label for="inputtext-left">Departement</label>
+                </span>
+            </div>
+        </div>
+        <br>
+
+        
+<div class="btnC">
+    
+    <p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<p-button (click)="confirm3()" class="btn" icon="pi pi-check" label="Confirmer"></p-button>
+<p-button (click)="confirm4()" class="btn" icon="pi pi-times" label="Effacer" ></p-button>
+<p-messages [value]="msgs"></p-messages>
+
+</div>
+    
+</div>
+
+</body>
+<div style="position: absolute; bottom: -150px; width: 100%;">
+    <app-footer ></app-footer></div>

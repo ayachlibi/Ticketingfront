@@ -1,0 +1,17 @@
+<header>
+    <p-menubar   >
+        <div style="display: inline-flex;  width: 1300px; ">
+        <div style="  float:left;">
+            <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+        </div>
+        <div> <h1 class="title">HelpDesk</h1></div>
+        <div style="float: left ; margin-left:650px;">
+    <p-menubar [model]="items"  >
+        
+        <div  >
+            <button pButton pRipple #btn label="Nom SA"style="width: 150px" type="button" class="p-button-rounded p-button-info" pButton icon="pi pi-user"  (click)="menu.toggle($event)"></button>
+            <p-slideMenu #menu [model]="admin" [popup]="true" [viewportHeight]="100"></p-slideMenu>
+         </div>
+    </p-menubar></div>
+    </div></p-menubar>
+    </header>

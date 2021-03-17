@@ -1,0 +1,54 @@
+<p-menubar   >
+    <div style="display: inline-flex;  width: 1300px; ">
+    <div style="  float:left;">
+        <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+    </div>
+    <div> <h1 class="title">HelpDesk</h1></div>
+    <div style="float: left ; margin-left:660px;">
+<p-menubar [model]="items"  >
+    
+    
+    <div  >
+        <button type="button" pButton label="Connexion" icon="pi pi-sign-in" style="margin-left:.25em"></button>
+    </div>
+</p-menubar></div>
+</div></p-menubar>
+<div style="display:inline-flex;">
+    <div style="display:inline-block">
+<div style="margin-top: 10px; width: 800px;">
+
+    <p-fieldset legend="Détails Ticket" >
+        
+    </p-fieldset></div>
+    <div class="p-grid convo">
+        <div class="p-col-12 p-md-4">
+            <p-scrollPanel [style]="{width: '800px', height: '300px'}" styleClass="custombar2">
+                <p style="width: 600px">
+                    <p-fieldset  legend="Nom"  >
+                       {{str}}
+                    </p-fieldset>
+                </p>
+            </p-scrollPanel>
+        </div>
+    </div>
+    <div style="display: inline-flex;">
+        <div style="display: inline-block;">
+    <h5 style="margin-top: 10px;">Répondre </h5>
+    <div class="p-field p-col-12">
+            <textarea #textarea style="margin-top: -10px; " inputId="textarea" rows="5" cols="100" [(ngModel)]="value10" pInputTextarea></textarea>
+    </div></div>
+    <div class="btnC">
+        <button pButton class="btn" type="button" label="Envoyer" class="p-button-text" (click)="GetVal(textarea.value)"></button>
+        <button pButton type="button" label="Fermer" class="p-button-text"></button>
+    </div>
+    </div>
+</div>
+    <div style="margin-top: 10px; width: 400px; margin-left: 130px;">
+
+        <p-fieldset legend="Détails Client" [style]="{'height': '500px'}">
+            
+        </p-fieldset></div>
+    
+    </div>
+
+        

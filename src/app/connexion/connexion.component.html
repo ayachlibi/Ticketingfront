@@ -1,0 +1,40 @@
+<p-menubar   >
+  <div style="display: inline-flex;  width: 1300px; ">
+  <div style="  float:left;">
+      <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+  </div>
+  <div> <h1 class="title">HelpDesk</h1></div>
+  <div style="float: left ; margin-left:800px;">
+<p-menubar [model]="items"  >
+  
+  
+  
+</p-menubar></div>
+</div></p-menubar>
+  <body >
+    
+    <div class="loginbox" >
+    <h1> Connexion</h1>
+    <span class="p-float-label" style="top: 50%; left: 5%;"> 
+        <input id="float-input" style="width: 260px;" type="text" pInputText [(ngModel)]="value1"> 
+        <label for="float-input">Username</label>
+    </span>
+    <br> 
+    <span class="p-float-label" style="top: 50%; left: 5%;" > 
+      <input id="float-input" style="width: 260px;" type="password" pInputText [(ngModel)]="value2"> 
+      <label for="float-input">Password</label>
+  </span>
+  <br>
+  
+  <button pButton pRipple routerLink="interfaceC" type="button" label="Se connecter" class="p-button-outlined p-button-secondary" style="top: 50%; left: 27%;"></button>  <br> <br>
+  <a href="#" class="oublie"> Mot de passe oublié ?</a> 
+  <br> <br>
+  <a routerLink="/ajoutC" class="oublie"> Pas de compte? Créer un! </a>
+    
+  </div>
+  <div class="bgimg">
+    <img style="width: 600px ; height:600px" src="../../assets/Wavy_Tech-28_Single-10.jpg" />
+  </div>    
+
+  </body>
+  <app-footer></app-footer>

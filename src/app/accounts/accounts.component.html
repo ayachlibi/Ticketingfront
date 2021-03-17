@@ -1,0 +1,274 @@
+<header>
+    <p-menubar   >
+        <div style="display: inline-flex;  width: 1300px; ">
+        <div style="  float:left;">
+            <img src="../../assets/149566752_299518481586454_2330217313313758796_n.png" height="60px" >
+        </div>
+        <div> <h1 class="title">HelpDesk</h1></div>
+        <div style="float: left ; margin-left:650px;">
+    <p-menubar [model]="items"  >
+        
+        <div  >
+            <button pButton pRipple #btn label="Name"style="width: 150px" type="button" class="p-button-rounded p-button-info" pButton icon="pi pi-user"  (click)="menu.toggle($event)"></button>
+            <p-slideMenu #menu  [model]="admin" [popup]="true" [viewportHeight]="150"></p-slideMenu>
+         </div>
+    </p-menubar></div>
+    </div></p-menubar>
+    </header>
+
+<body >
+         <div style="margin-left: 400px;"  >
+    <p-toggleButton  [(ngModel)]="checked1" onLabel="Close " offLabel="Clients" onIcon="pi pi-times"
+    offIcon="pi pi-check" [style]="{'width': '10em','margin-right':'100px' }" (click)="toggle()"></p-toggleButton> 
+    <p-toggleButton   [(ngModel)]="checked2" onLabel=" Close" offLabel="CSE" onIcon="pi pi-times"
+    offIcon="pi pi-check" [style]="{'width': '10em'}" (click)="toggle2()"></p-toggleButton> 
+</div>
+       
+<!-----------------------------Table des Clients------------------------------------>
+
+<p-table *ngIf="checked1" #dt1 [style]="{'width':'100%','margin-top':'20px'}" [value]="customers" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+[rowsPerPageOptions]="[10,25,50]" [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
+[paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[globalFilterFields]="['name','country.name','representative.name','status']">
+<ng-template pTemplate="caption">
+   
+    <div class="p-d-flex">
+        <span class="p-input-icon-left p-ml-auto" style="display: inline-flex;">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+            <div class="p-d-flex tooltip" style="margin-left: 1050px;">
+                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2 "  tooltipPosition="bottom"></button>
+            <span class="tooltiptext"> Download in Excel Format</span>
+            </div>
+            
+        </span>
+    
+    </div>
+</ng-template>
+<ng-template pTemplate="header">
+   <tr>
+    <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            ID
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+       <th  >
+           <div class="p-d-flex p-jc-between p-ai-center">
+               Name
+               <br>
+               <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+           </div>
+       </th>
+       <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            Last Name
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            Phone Number
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            E-mail
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    
+       <th style="width:140px ;">
+           <div class="p-d-flex p-jc-between p-ai-center">
+               Created At
+               <br>
+               <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+           </div>
+       </th>
+       <th style="width:140px ;">
+           <div class="p-d-flex p-jc-between p-ai-center">
+               Updated At
+               <br>
+               <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+           </div>
+       </th>
+       <th>
+        <div class="p-d-flex p-jc-between p-ai-center">
+            Entreprise
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    <th>
+        Operation
+    </th>
+       
+       
+   </tr>
+</ng-template>
+<ng-template pTemplate="body" let-customer>
+   <tr>
+       <td>
+            <!--ID Client-->
+       </td>
+       <td>
+           <!--Client's Name-->
+       </td>
+       <td>
+           <!--Client's Last Name-->
+       </td>
+       <td>	
+           <!--Client's Phone Number-->
+           
+       </td>
+       <td>
+           <!-- Client's Email-->
+       </td>
+       <td>
+            <!--Client's Creation Date-->
+       </td>
+       <td>
+            <!--Client's Update Date-->
+       </td>
+       <td>
+            <!--Client's Entreprise-->
+       </td>
+       <td>
+
+       </td>
+        
+   </tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+   <tr>
+       <td colspan="9">No Clients found.</td>
+   </tr>
+</ng-template>
+</p-table>
+
+
+
+
+<!-----------------------------Table des CSE------------------------------------>
+
+
+
+
+<p-table *ngIf="checked2" #dt1 [style]="{'width':'100%','margin-top':'20px'}" [value]="customers" dataKey="id" [rows]="10" [showCurrentPageReport]="true"
+[rowsPerPageOptions]="[10,25,50]" [loading]="loading" styleClass="p-datatable-customers p-datatable-gridlines"
+[paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[globalFilterFields]="['name','country.name','representative.name','status']">
+<ng-template pTemplate="caption">
+   
+    <div class="p-d-flex">
+        <span class="p-input-icon-left p-ml-auto" style="display: inline-flex;">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword" />
+            <div class="p-d-flex tooltip" style="margin-left: 1050px;">
+                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success p-mr-2 "  tooltipPosition="bottom"></button>
+            <span class="tooltiptext"> Download in Excel Format</span>
+            </div>
+            
+        </span>
+    
+    </div>
+</ng-template>
+<ng-template pTemplate="header">
+   <tr>
+    <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            ID
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+       <th  >
+           <div class="p-d-flex p-jc-between p-ai-center">
+               Name
+               <br>
+               <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+           </div>
+       </th>
+       <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            Last Name
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            Phone Number
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    <th  >
+        <div class="p-d-flex p-jc-between p-ai-center">
+            E-mail
+            <br>
+            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+    </th>
+    
+       <th style="width:140px ;">
+           <div class="p-d-flex p-jc-between p-ai-center">
+               Created At
+               <br>
+               <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+           </div>
+       </th>
+       <th style="width:140px ;">
+           <div class="p-d-flex p-jc-between p-ai-center">
+               Updated At
+               <br>
+               <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
+           </div>
+       </th>
+       <th class="p-d-flex p-jc-between p-ai-center">
+           Operation
+       </th>
+       
+   </tr>
+</ng-template>
+<ng-template pTemplate="body" let-customer>
+   <tr>
+       <td>
+            <!--ID CSE-->
+       </td>
+       <td>
+           <!--CSE's Name-->
+       </td>
+       <td>
+           <!--CSE's Last Name-->
+       </td>
+       <td>	
+           <!--CSE's Phone Number-->
+           
+       </td>
+       <td>
+           <!-- CSE's Email-->
+       </td>
+       <td>
+            <!--CSE's Creation Date-->
+       </td>
+       <td>
+            <!--CSE's Update Date-->
+       </td>
+       <td>
+
+       </td>
+        
+   </tr>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+   <tr>
+       <td colspan="8">No CSE found.</td>
+   </tr>
+</ng-template>
+</p-table>
